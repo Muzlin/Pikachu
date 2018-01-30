@@ -1,20 +1,22 @@
 ! function () {
+    let container = document.querySelector('#code');
+    let styleTag = document.querySelector('#styleTag');
+    var duration = 30;
+    let id;
     function writeCode(prefix, code, fn) {
-        // let container = document.querySelector('#code');
-        // let styleTag = document.querySelector('#styleTag');
         let n = 0;
-        let id = setInterval(() => {
+        id = setTimeout(function run() {
             n += 1;
-            let container = document.querySelector('#code');
-            let styleTag = document.querySelector('#styleTag');
+
             container.innerHTML = code.substring(0, n);
             styleTag.innerHTML = code.substring(0, n);
             container.scrollTop = container.scrollHeight;
-            if (n >= code.length) {
-                window.clearInterval(id);
+            if (n < code.length) {
+                id = setTimeout(run, duration);
+            } else {
                 fn && fn.call();
             }
-        }, 10);
+        }, duration)
     }
     let code = `.preview{
         height: 100%;
@@ -140,4 +142,28 @@
         border-radius: 100px/100px;
     }`;
     writeCode('', code);
+
+    $('.actions').on('click', 'button', function (e) {
+        let $button = $(e.currentTarget);
+        let speed = $button.attr('data-speed');
+        $button.addClass('active')
+            .siblings('.active').removeClass('active');
+        switch (speed) {
+            case 'slow':
+                duration = 100;
+                break;
+            case 'normal':
+                duration = 30;
+                break;
+            case 'fast':
+                duration = 1;
+                break;
+            case 'stop':
+                window.clearTimeout(id);
+                container.innerHTML = code;
+                styleTag.innerHTML = code;
+                container.scrollTop = container.scrollHeight;
+                break;
+        }
+    })
 }.call();
