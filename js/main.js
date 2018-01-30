@@ -3,6 +3,7 @@
     let styleTag = document.querySelector('#styleTag');
     var duration = 30;
     let id;
+
     function writeCode(prefix, code, fn) {
         let n = 0;
         id = setTimeout(function run() {
