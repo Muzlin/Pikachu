@@ -70,11 +70,12 @@ body{
     top: 85px;
 }
 .face.left{
-    margin-left: 10px;
+    right: 50%;
+    margin-right: 100px;
 }
 .face.right{
-    right: 0;
-    margin-right: 10px;
+    left: 50%;
+    margin-left: 100px;
 }
 .upper_lip{
     height: 25px;
