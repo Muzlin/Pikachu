@@ -20,7 +20,6 @@
     }
     let code = `.preview{
         height: 100%;
-        border: 1px solid green;
         background-color: #fbe54a;
         display: flex;
         justify-content: center;
