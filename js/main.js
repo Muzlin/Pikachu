@@ -7,7 +7,6 @@
         let n = 0;
         id = setTimeout(function run() {
             n += 1;
-
             container.innerHTML = code.substring(0, n);
             styleTag.innerHTML = code.substring(0, n);
             container.scrollTop = container.scrollHeight;
